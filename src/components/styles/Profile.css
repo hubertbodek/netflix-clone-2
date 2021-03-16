@@ -1,0 +1,15 @@
+.Profile {
+	height: 60%;
+	transition: all 0.1s;
+	margin: 0 1rem;
+	cursor: pointer;
+}
+
+.Profile:hover {
+	transform: scale(1.03);
+	outline: 1px rgba(255, 255, 255, 0.541) solid;
+}
+
+.Profile__avatar {
+	height: 100%;
+}

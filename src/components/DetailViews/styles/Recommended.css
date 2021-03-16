@@ -1,0 +1,15 @@
+.Recommended {
+	padding: 0 5rem;
+	padding-bottom: 5rem;
+}
+
+.Recommended__header {
+	margin-bottom: 2rem;
+}
+
+.Recommended__grid-container {
+	display: grid;
+	gap: 2rem;
+	width: 100%;
+	grid-template-columns: repeat(3, minmax(min-content, 1fr));
+}

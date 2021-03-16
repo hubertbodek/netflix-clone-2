@@ -1,0 +1,97 @@
+*,
+*::after,
+*::before {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 62.5%;
+}
+
+body {
+	font-size: 1.6rem;
+	font-family: "Roboto", Helvetica, Arial, sans-serif;
+	background: linear-gradient(to right bottom, rgb(37, 37, 37), rgb(0, 0, 0));
+}
+
+.btn--more-info {
+	width: 16rem;
+	/* font-size: 1.6rem; */
+	outline: none;
+	border: none;
+	border-radius: 3px;
+	padding: 0.6rem 0.4rem;
+	color: white;
+	text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.7);
+	background-color: rgba(109, 109, 110, 0.7);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 1rem;
+	cursor: pointer;
+	transition: all 0.05s;
+}
+
+.btn--more-info:hover {
+	background-color: rgba(109, 109, 110, 0.6);
+}
+
+.btn--white {
+	width: 14rem;
+	height: 3.4rem;
+	border-radius: 3px;
+	padding: 1rem 0.5rem;
+	outline: none;
+	border: 1px black solid;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 1rem;
+	cursor: pointer;
+	background-color: rgb(230, 230, 230);
+	color: black;
+	/* transition: background-color 0.1s; */
+	/* font-weight: 600; */
+}
+
+.btn--white:hover {
+	background-color: rgb(212, 212, 212);
+}
+
+.btn--round {
+	height: 3.4rem;
+	width: 3.4rem;
+	margin-left: 1rem;
+	border-radius: 50%;
+	outline: none;
+	border: 2px solid rgba(255, 255, 255, 0.5);
+	background-color: rgba(27, 27, 27, 0.9);
+	cursor: pointer;
+	transition: all 0.07s;
+}
+
+.btn--round-small {
+	height: 2.6rem;
+	width: 2.6rem;
+}
+
+.btn--round:hover {
+	border: 2px solid rgba(255, 255, 255, 0.75);
+}
+
+a {
+	text-decoration: none;
+	color: white;
+}
+
+li {
+	list-style: none;
+}
+
+.App {
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+}

@@ -1,0 +1,53 @@
+html {
+	min-height: 100%; /* make sure it is at least as tall as the viewport */
+}
+
+body {
+	height: 100%;
+	/* overflow: hidden; */
+}
+
+.Modal {
+	position: fixed;
+	z-index: 100;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	color: white;
+	background: rgba(0, 0, 0, 0.568);
+	backdrop-filter: blur(3px);
+}
+
+.Modal__inner {
+	position: absolute;
+	/* height */
+	min-height: 90vh;
+	height: 96vh;
+	/* width */
+	width: 93%;
+	max-width: 85rem;
+	left: 50%;
+	top: 2vh;
+	transform: translate(-50%, 0);
+	/* overflow: hidden; */
+	border-radius: 4px;
+	background-color: rgb(27, 27, 27);
+	/* overflow-y: scroll; */
+}
+
+.Modal__inner--back-btn {
+	position: absolute;
+	top: 1rem;
+	z-index: 10;
+}
+
+.Modal__inner--back-btn .link {
+	height: 3.4rem;
+	width: 3.4rem;
+}
+
+/* BAR STYLING */
+
+.simplebar-track.simplebar-vertical .simplebar-scrollbar:before {
+	background-color: rgb(70, 70, 70);
+}

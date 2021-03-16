@@ -1,0 +1,47 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Hubert",
+      "avatar": "avatar2.png",
+      "my_list": [
+        {
+          "id": 117581,
+          "backdrop_path": "/hVMoqvXs5j9ffun56tZ5YhliSD9.jpg",
+          "name": "Ginny & Georgia",
+          "media_type": "tv"
+        },
+        {
+          "id": 587807,
+          "backdrop_path": "/fev8UFNFFYsD5q7AcYS8LyTzqwl.jpg",
+          "name": "Tom & Jerry",
+          "media_type": "movie"
+        },
+        {
+          "id": 529203,
+          "backdrop_path": "/cjaOSjsjV6cl3uXdJqimktT880L.jpg",
+          "name": "The Croods: A New Age",
+          "media_type": "movie"
+        },
+        {
+          "id": 508442,
+          "backdrop_path": "/kf456ZqeC45XTvo6W9pW5clYKfQ.jpg",
+          "name": "Soul",
+          "media_type": "movie"
+        },
+        {
+          "id": 644583,
+          "backdrop_path": "/eLq6NEt3pwLvYrN5C6dPFcaTt7D.jpg",
+          "name": "The Mauritanian",
+          "media_type": "movie"
+        },
+        {
+          "id": 60735,
+          "backdrop_path": "/jC1KqsFx8ZyqJyQa2Ohi7xgL7XC.jpg",
+          "name": "The Flash",
+          "media_type": "tv"
+        }
+      ]
+    }
+  ]
+}

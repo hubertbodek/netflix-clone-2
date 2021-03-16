@@ -1,0 +1,10 @@
+.detail {
+	display: flex;
+	flex-direction: column;
+	/* height */
+	min-height: 90vh;
+	height: 96vh;
+	/* width */
+	width: 100%;
+	margin: 0;
+}

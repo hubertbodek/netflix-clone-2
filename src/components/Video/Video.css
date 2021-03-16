@@ -1,0 +1,32 @@
+.Video {
+	display: flex;
+	height: 85vh;
+	/* width: 100%; */
+	justify-content: center;
+	align-items: center;
+	position: relative;
+}
+
+.Video__wrapper {
+	position: relative;
+	padding-bottom: 56.25%; /*16:9*/
+	height: 5rem;
+	flex: 1;
+	/* max-width: 90vw; */
+}
+
+.Video__iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	/* margin: 5rem 5rem; */
+}
+
+.Video__back {
+	position: absolute;
+	top: 5rem;
+	left: 5rem;
+	z-index: 9;
+}

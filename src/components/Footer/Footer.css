@@ -1,0 +1,43 @@
+.Footer {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 4rem;
+	background-color: black;
+	/* position: absolute;
+	bottom: 0; */
+	width: 100%;
+	padding: 2rem;
+	align-self: flex-end;
+}
+
+.Footer__icons {
+	display: flex;
+	width: 100%;
+	justify-content: space-around;
+	align-items: center;
+	padding: 0 10rem;
+}
+
+.Footer__link {
+	/* height: 5rem;
+	width: 5rem; */
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.Footer__icons path {
+	fill: white;
+	height: 5rem;
+}
+
+.Footer__icons a:hover path {
+	fill: red;
+}
+
+.Footer__icons svg {
+	height: 100%;
+	width: 100%;
+}

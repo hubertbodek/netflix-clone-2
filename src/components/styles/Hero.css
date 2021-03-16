@@ -1,0 +1,72 @@
+.Hero {
+	height: 90vh;
+	overflow: hidden;
+	animation: fadeIn 1s ease;
+	margin-bottom: 1.5rem;
+}
+
+.Hero__main {
+	height: 100%;
+	background: no-repeat center center;
+	background-size: cover;
+	position: relative;
+	/* z-index: -1; */
+}
+
+.Hero__detail {
+	position: absolute;
+	width: 40%;
+	z-index: 9;
+	top: 50%;
+	margin-left: 6rem;
+	transform: translateY(-50%);
+	animation: moveIn 1.7s ease-out;
+	color: white;
+	text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.7);
+}
+
+.Hero__detail > * {
+	margin: 1rem 0;
+}
+
+.Hero__header {
+	font-size: 4.8rem;
+}
+
+.Hero__meta {
+	font-size: 1.8rem;
+}
+
+/* .Hero__icon{
+
+} */
+
+.capitalize {
+	text-transform: capitalize;
+}
+
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	30% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes moveIn {
+	from {
+		opacity: 0;
+		transform: translateY(-1000%);
+	}
+	80% {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+		transform: translateY(-50%);
+	}
+}

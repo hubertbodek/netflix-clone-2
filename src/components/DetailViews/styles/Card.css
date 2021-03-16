@@ -1,0 +1,77 @@
+.Card {
+	/* border: 1px solid white; */
+	/* max-width: 20rem; */
+	min-height: 35rem;
+	background-color: rgb(41, 41, 41);
+	border-radius: 2px;
+	overflow: hidden;
+	transition: all 0.15s;
+	display: flex;
+	flex-direction: column;
+}
+
+.Card:hover {
+	background-color: rgba(41, 41, 41, 0.795);
+	transform: translateY(-0.3rem);
+	box-shadow: 0.5rem 0.7rem 2rem rgba(0, 0, 0, 0.25);
+}
+
+.Card__image {
+	height: 40%;
+	overflow: hidden;
+}
+
+.Card__image img {
+	width: 100%;
+}
+
+.Card__title {
+	font-size: 1.6rem;
+}
+
+.Card__meta {
+	font-size: 1.4rem;
+	font-weight: 500;
+	font-style: italic;
+}
+
+.Card__vote {
+	margin-left: 1rem;
+}
+
+.green {
+	color: rgb(0, 219, 0);
+}
+
+.yellow {
+	color: rgb(206, 209, 0);
+}
+
+.red {
+	color: rgb(196, 0, 0);
+}
+
+.Card__description {
+	flex: 1;
+	display: flex;
+	gap: 2rem;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+	padding: 1rem;
+}
+
+.Card__overview {
+	/* width: 100%;
+	height: 100%; */
+	width: 100%;
+	flex: 1;
+	line-height: 1.5;
+	max-height: 10.5rem;
+	/* -webkit-box-orient: vertical; */
+	/* white-space: nowrap; */
+	overflow: hidden;
+	font-size: 1.4rem;
+	text-overflow: ellipsis;
+	-webkit-line-clamp: 4;
+}
