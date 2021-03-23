@@ -7,10 +7,16 @@ import "./styles/MyListPage.css";
 
 function MyListPage({ media, match, userId }) {
 	return (
-		<div className="MyListPage">
-			<h2 className="MyListPage__header">My List</h2>
+		<div className="MyListPage page">
+			<h2 className="MyListPage__header page__header">My List</h2>
 			{media ? (
-				<Grid media={media} match={match} prefix="MyList" />
+				<Grid
+					media={media}
+					match={match}
+					prefix="MyList"
+					showDeleteButton
+					isOnMyList
+				/>
 			) : (
 				"loading..."
 			)}

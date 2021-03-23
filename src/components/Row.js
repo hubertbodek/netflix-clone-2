@@ -4,13 +4,22 @@ import {
 	faChevronRight,
 	faChevronLeft,
 } from "@fortawesome/free-solid-svg-icons";
+import { v4 as uuidv4 } from "uuid";
 
 import DetailsButton from "./Buttons/DetailsButton";
 import "./styles/Row.css";
 
 const path = "https://image.tmdb.org/t/p/w300";
 
-function Row({ movies, header, vertical, match, media_type }) {
+function Row({
+	size = 20,
+	items,
+	header,
+	vertical,
+	match,
+	media_type,
+	numbers,
+}) {
 	const rowRef = useRef(null);
 
 	const scroll = (x) => {
@@ -20,26 +29,42 @@ function Row({ movies, header, vertical, match, media_type }) {
 	};
 
 	const renderMovies = () => {
-		if (movies) {
-			return movies.map((movie, index) => {
-				const posterPath = vertical ? movie.poster_path : movie.backdrop_path;
+		if (items) {
+			return items.slice(0, size).map((row_item, index) => {
+				const posterPath = vertical
+					? row_item.poster_path
+					: row_item.backdrop_path;
 				return (
-					<div
-						key={Number(movie.id) + index + Math.floor(Math.random() * 100)}
-						className={`movie ${vertical ? "vertical" : "horizontal"}`}
-					>
-						<img src={`${path}${posterPath}`} alt="Poster" />
-						<div className="movie__detail">
-							<h4 className="movie__title">
-								{movie.title ? movie.title : movie.name}
-							</h4>
-							<DetailsButton
-								currentUrl={match.url}
-								id={movie.id}
-								media_type={movie.media_type ? movie.media_type : media_type}
-							/>
+					posterPath && (
+						<div
+							key={uuidv4()}
+							className={`row_item ${vertical ? "vertical" : "horizontal"}${
+								numbers ? " gotNumbers" : ""
+							}`}
+						>
+							{" "}
+							{numbers && (
+								<div className="number">
+									<span>{index + 1}</span>
+								</div>
+							)}
+							<div className="row_item__img-container">
+								{<img src={`${path}${posterPath}`} alt="Poster" />}
+							</div>
+							<div className="row_item__detail">
+								<h4 className="row_item__title">
+									{row_item.title ? row_item.title : row_item.name}
+								</h4>
+								<DetailsButton
+									currentUrl={match.url}
+									id={row_item.id}
+									media_type={
+										row_item.media_type ? row_item.media_type : media_type
+									}
+								/>
+							</div>
 						</div>
-					</div>
+					)
 				);
 			});
 		}

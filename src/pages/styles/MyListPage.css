@@ -1,14 +1,10 @@
-.MyListPage {
+.page {
 	margin-top: 6.5rem;
 	padding: 0 3rem;
 	min-height: 100vh;
 }
 
-.MyList--img {
-	width: 100%;
-}
-
-.MyListPage__header {
+.page__header {
 	color: white;
 	/* margin-top: 2rem; */
 }

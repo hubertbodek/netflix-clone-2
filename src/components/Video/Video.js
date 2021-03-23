@@ -46,8 +46,8 @@ function Video({
 						<iframe
 							src={`https://www.youtube.com/embed/${videos["0"].key}`}
 							title="lol"
-							frameborder="0"
-							allowfullscreen="allowfullscreen"
+							frameBorder="0"
+							allowFullScreen="allowfullscreen"
 							className="Video__iframe"
 						/>
 					</div>

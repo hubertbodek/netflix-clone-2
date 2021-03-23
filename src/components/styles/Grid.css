@@ -2,7 +2,13 @@
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(24rem, 1fr));
 	gap: 2.5rem;
-	padding: 2rem 0;
+	/* padding: 2rem 0; */
+	padding-top: 3rem;
+	padding-bottom: 1rem;
+}
+
+.Grid__img {
+	width: 100%;
 }
 
 .media:hover {

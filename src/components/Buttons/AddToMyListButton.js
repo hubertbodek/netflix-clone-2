@@ -1,37 +1,48 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faCheck } from "@fortawesome/free-solid-svg-icons";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import _ from "lodash";
 
-import jsonServer from "../../api/jsonServer";
+// import jsonServer from "../../api/jsonServer";
 import DeleteFavouriteButton from "./DeleteFavouriteButton";
+import db from "../../firebase.js";
 
-function AddToMyListButton({ type, user, media_id, detail, media_type }) {
+function AddToMyListButton({
+	type,
+	user,
+	media_id,
+	detail,
+	media_type,
+	my_list,
+}) {
 	const [isChecked, setIsChecked] = useState(false);
 
 	useEffect(() => {
-		if (user.id) {
-			const userList = user.my_list;
-			userList.forEach((media) => {
+		if (user.uid && !_.isEmpty(my_list)) {
+			my_list.forEach((media) => {
 				if (media.id === media_id) {
 					setIsChecked(true);
 				}
 			});
 		}
-	}, [user, media_id]);
+	}, [user, media_id, my_list]);
 
-	const addToMyList = () => {
-		const userList = user.my_list;
+	const addToMyList = async (uid) => {
+		const docRef = db.collection("users").doc(uid);
+		const doc = await docRef.get();
+		const data = doc.data();
+		const myList = data.my_list;
 
-		userList.push({
+		myList.push({
 			id: media_id,
 			backdrop_path: detail.backdrop_path,
 			name: detail.name || detail.title,
 			media_type: media_type,
 		});
 
-		jsonServer.patch(`/users/${user.id}`, {
-			my_list: userList,
+		docRef.update({
+			my_list: myList,
 		});
 		setIsChecked(true);
 	};
@@ -50,10 +61,10 @@ function AddToMyListButton({ type, user, media_id, detail, media_type }) {
 				/>
 			) : (
 				<button
-					onClick={() => !isChecked && addToMyList()}
+					onClick={() => !isChecked && addToMyList(user.uid)}
 					className={`AddToMyListButton ${type}`}
 				>
-					<FontAwesomeIcon icon={isChecked ? faCheck : faPlus} />
+					<FontAwesomeIcon icon={faPlus} />
 				</button>
 			)}
 		</>
@@ -64,7 +75,8 @@ const mapStateToProps = (state) => {
 	return {
 		media_id: state.detailsToDisplay.id,
 		detail: state.detailsToDisplay,
-		user: state.currentUser,
+		user: state.currentUser.user,
+		my_list: state.currentUser.my_list,
 	};
 };
 

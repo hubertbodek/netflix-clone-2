@@ -70,6 +70,8 @@ body {
 	background-color: rgba(27, 27, 27, 0.9);
 	cursor: pointer;
 	transition: all 0.07s;
+	color: rgba(255, 255, 255, 0.5);
+	font-size: 2rem;
 }
 
 .btn--round-small {

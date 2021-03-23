@@ -54,50 +54,51 @@ function MainPage({
 		fetchHorror,
 	]);
 	return (
-		<div>
+		<div className="MainPage page">
 			<Hero match={match} />
-			<Row match={match} header={"Trending"} movies={trending.results} />
+			<Row match={match} header={"Trending"} items={trending.results} />
 			<Row
 				match={match}
 				header={"Netflix Orginals"}
-				movies={netflixOrginals.results}
+				items={netflixOrginals.results}
 				media_type={netflixOrginals.media_type}
 				vertical
 			/>
 			<Row
 				match={match}
 				header={"Top Rated"}
-				movies={topRated.results}
+				items={topRated.results}
 				media_type={topRated.media_type}
 			/>
 			<Row
 				match={match}
 				header={"Action"}
-				movies={action.results}
+				items={action.results}
 				media_type={action.media_type}
+				vertical
 			/>
 			<Row
 				match={match}
 				header={"Comedy"}
-				movies={comedy.results}
+				items={comedy.results}
 				media_type={comedy.media_type}
 			/>
 			<Row
 				match={match}
 				header={"Romance"}
-				movies={romance.results}
+				items={romance.results}
 				media_type={romance.media_type}
 			/>
 			<Row
 				match={match}
 				header={"Documentaries"}
-				movies={documentaries.results}
+				items={documentaries.results}
 				media_type={documentaries.media_type}
 			/>
 			<Row
 				match={match}
 				header={"Horror"}
-				movies={horror.results}
+				items={horror.results}
 				media_type={horror.media_type}
 			/>
 		</div>

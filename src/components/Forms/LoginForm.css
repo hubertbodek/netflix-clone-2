@@ -1,0 +1,62 @@
+.LoginForm {
+	background-color: rgba(27, 27, 27, 0.856);
+	min-width: 24rem;
+	width: 38rem;
+	height: 44rem;
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+	justify-content: center;
+	padding: 2rem 4rem;
+	border-radius: 5px;
+	color: white;
+	/* font-size: 1.4rem; */
+}
+
+.MuiTextField-root input {
+	color: white;
+	background-color: rgb(56, 56, 56);
+}
+
+.MuiInputLabel-root {
+	color: #e50914 !important;
+}
+
+.MuiFormHelperText-root {
+	font-size: 1rem !important;
+}
+
+.LoginForm__header {
+	color: #d1d1d1;
+	margin-bottom: 2rem;
+}
+
+.LoginForm__text input {
+	font-size: 1.3rem;
+}
+
+.LoginForm__terms {
+	font-size: 1.3rem;
+	display: flex;
+	align-items: center;
+}
+
+.error-message {
+	color: red;
+	font-size: 1.3rem;
+}
+
+.LoginForm__signin {
+	font-size: 1.3rem;
+	align-self: center;
+}
+
+.LoginForm__signin-link {
+	color: #e50914;
+	cursor: pointer;
+}
+
+.LoginForm__signin-link:hover {
+	color: red;
+	/* text-decoration: underline; */
+}

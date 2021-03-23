@@ -1,0 +1,17 @@
+.SigninForm__header {
+	margin-bottom: 1rem;
+	color: #e50914;
+}
+
+.SigninForm__information {
+	font-size: 1.5rem;
+}
+
+.login-link {
+	color: #e50914;
+	cursor: pointer;
+}
+
+.login-link:hover {
+	color: red;
+}

@@ -2,7 +2,10 @@
 	height: 90vh;
 	overflow: hidden;
 	animation: fadeIn 1s ease;
+	/* fixing position bcs of page padding*/
+	margin: 0 -3rem;
 	margin-bottom: 1.5rem;
+	margin-top: -6.5rem;
 }
 
 .Hero__main {

@@ -7,20 +7,25 @@ import SearchBar from "./SearchBar";
 import Profile from "./Profile";
 
 function Navbar({ location }) {
-	const [isWatch, setIsWatch] = useState(false);
+	const [mount, setMount] = useState(false);
 
 	useEffect(() => {
-		if (location.pathname.includes("/watch")) {
-			setIsWatch(true);
+		if (
+			location.pathname.includes("/watch") ||
+			location.pathname.includes("/login") ||
+			location.pathname.includes("/signin") ||
+			location.pathname === "/"
+		) {
+			setMount(false);
 		} else {
-			setIsWatch(false);
+			setMount(true);
 		}
 	}, [location]);
 
 	console.log();
 	const ref = useRef();
 	return (
-		!isWatch && (
+		mount && (
 			<div className="Navbar">
 				<div className="Navbar__left">
 					<NavLink exact to="/browse" className="Navbar__link">
@@ -52,13 +57,13 @@ function Navbar({ location }) {
 					>
 						Movies
 					</NavLink>
-					<NavLink
+					{/* <NavLink
 						activeClassName="selected"
 						to="/trending"
 						className="Navbar__link"
 					>
 						Trending
-					</NavLink>
+					</NavLink> */}
 					<NavLink
 						activeClassName="selected"
 						to="/mylist"

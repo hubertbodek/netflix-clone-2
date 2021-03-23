@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import Select from "react-select";
+import { v4 as uuidv4 } from "uuid";
 
 import { connect } from "react-redux";
 
@@ -45,11 +46,13 @@ function EpisodesView({
 		if (seasonDetail.episodes) {
 			return seasonDetail.episodes.map((episode) => {
 				return (
-					<div className="episode">
+					<div key={uuidv4()} className="episode">
 						<div className="episode__left">
 							<h3 className="episode__number">{episode.episode_number}</h3>
 							<div className="episode__img">
-								<img src={`${path}${episode.still_path}`} alt="Still path" />
+								{episode.still_path && (
+									<img src={`${path}${episode.still_path}`} alt="Still path" />
+								)}
 							</div>
 						</div>
 						<div className="episode__right">

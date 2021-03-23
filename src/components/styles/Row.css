@@ -2,7 +2,7 @@
 
 .Row {
 	position: relative;
-	margin: 0 3rem;
+	/* margin: 0 3rem; */
 }
 
 .Row__container {
@@ -11,7 +11,7 @@
 	justify-content: flex-start;
 	align-items: center;
 	/* scrolling */
-	padding-top: 5rem;
+	padding-top: 3rem;
 	padding-bottom: 1rem;
 	overflow-y: hidden;
 	overflow-x: scroll;
@@ -27,15 +27,63 @@
 }
 
 /* MOVIE STYLING */
-.movie,
+.row_item,
 .media {
 	position: relative;
 	z-index: 0;
 	transition: all 0.2s 0.2s;
 }
 
-.movie img {
+.row_item img {
+	width: 24rem;
+}
+
+.vertical img {
+	width: 20rem;
+}
+
+.gotNumbers {
+	display: flex;
+	margin: 0 1rem;
+	/* width: 23rem; */
+}
+
+.gotNumbers .number {
+	display: flex;
+	align-items: flex-end;
+	justify-content: flex-end;
+	width: 10rem;
+	font-size: 22rem;
+	/* line-height: 10rem; */
+	/* outline: white; */
+	letter-spacing: -3rem;
+	-webkit-text-stroke-width: 2px;
+	-webkit-text-stroke-color: rgb(97, 97, 97);
+	text-shadow: 1rem 1rem 1rem rgba(0, 0, 0, 0.253);
+	transition: all 0.2s;
+}
+
+.gotNumbers .row_item__img-container {
+	width: 15rem;
+}
+
+.gotNumbers img {
+	width: 100%;
+	box-shadow: 1rem 1rem 1rem rgba(0, 0, 0, 0.253);
+	transition: all 0.2s;
+}
+
+.row_item img,
+.Grid__img {
 	border-radius: 3px;
+}
+
+.gotNumbers:hover .number {
+	text-shadow: 1rem 1.2rem 2rem rgba(0, 0, 0, 0.253);
+}
+
+.gotNumbers:hover img {
+	text-shadow: 1rem 1.2rem 2rem rgba(0, 0, 0, 0.253);
 }
 
 .horizontal:hover {
@@ -48,26 +96,26 @@
 	z-index: 8;
 }
 
-.movie:first-child {
+.row_item:first-child {
 	transform-origin: left;
 }
 
-.movie:last-child {
+.row_item:last-child {
 	transform-origin: right;
 }
 
-.movie:hover .movie__detail,
+.row_item:hover .row_item__detail,
 .media:hover .media__detail {
 	transform: translateY(0);
 	opacity: 1;
 }
 
-.movie__title {
+.row_item__title {
 	color: white;
 	text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.7);
 }
 
-.movie__detail,
+.row_item__detail,
 .media__detail {
 	position: absolute;
 	bottom: 1rem;
@@ -77,7 +125,7 @@
 	opacity: 0;
 }
 
-.movie__detail > * {
+.row_item__detail > * {
 	margin: 0.5rem 0.5rem;
 }
 

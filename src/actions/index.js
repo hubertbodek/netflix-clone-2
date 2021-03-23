@@ -1,4 +1,4 @@
-// trending, netflix orginals, top rated, action movies, comedy, romance, documentaries
+import db from "../firebase.js";
 import {
 	// MOVIES AND SHOWS TYPES
 	FETCH_TRENDING,
@@ -10,8 +10,8 @@ import {
 	FETCH_DOCUMENTARIES,
 	FETCH_HORROR,
 	// CURRENT PROFILE TYPES
-	FETCH_CURRENT_PROFILE,
-	DELETE_FROM_MY_LIST,
+	SET_CURRENT_PROFILE,
+	// DELETE_FROM_MY_LIST,
 	// ADD_TO_MY_LIST,
 	// REMOVE_FROM_MY_LIST,
 	// MOVIE/SHOW DETAILS
@@ -30,10 +30,17 @@ import {
 	FETCH_MOVIE_VIDEOS,
 	FETCH_TV_VIDEOS,
 	SET_VIDEOS_TO_NULL,
+	// FETCH TV GENRES
+	FETCH_TV_LATEST,
+	FETCH_TV_POPULAR,
+	FETCH_TV_ACTION,
+	FETCH_TV_COMEDY,
+	FETCH_USER_MY_LIST,
+	SET_CURRENT_ACCOUNT,
 } from "./types";
 
 import tmdb from "../api/tmdb";
-import jsonServer from "../api/jsonServer";
+// import jsonServer from "../api/jsonServer";
 
 // MOVIES AND SHOWS DATA
 
@@ -116,19 +123,41 @@ export const fetchHorror = () => {
 
 // PROFILE DATA
 
-export const fetchCurrentProfile = (id) => {
-	return async (dispatch) => {
-		const response = await jsonServer.get(`/users/${id}`);
-		dispatch({ type: FETCH_CURRENT_PROFILE, payload: response.data });
+// export const fetchCurrentProfile = (id) => {
+// 	return async (dispatch) => {
+// 		const response = await jsonServer.get(`/users/${id}`);
+// 		dispatch({ type: FETCH_CURRENT_PROFILE, payload: response.data });
+// 	};
+// };
+
+export const setCurrentProfile = (userCredentials) => {
+	return {
+		type: SET_CURRENT_PROFILE,
+		payload: userCredentials,
 	};
 };
 
-export const deleteFromMyList = (updatedList) => {
+export const setCurrentAccount = (account) => {
 	return {
-		type: DELETE_FROM_MY_LIST,
-		updatedList,
+		type: SET_CURRENT_ACCOUNT,
+		payload: account,
 	};
 };
+
+export const fetchUserMyList = (uid) => {
+	return async (dispatch) => {
+		const docRef = db.collection("users").doc(uid);
+		const doc = await docRef.get();
+		const data = doc.data();
+		dispatch({ type: FETCH_USER_MY_LIST, payload: data ? data.my_list : [] });
+	};
+};
+
+// export const deleteFromMyList = (uid, id) => {
+// return async dispatch => {
+
+// 		type: DELETE_FROM_MY_LIST, payloadupdatedList
+// };
 
 // export const addToMyList = (user_id, media_id) => {
 // 	return async dispatch =>{
@@ -234,5 +263,45 @@ export const setVideosToNull = () => {
 	return {
 		type: SET_VIDEOS_TO_NULL,
 		payload: {},
+	};
+};
+
+export const fetchTvLatest = () => {
+	return async (dispatch) => {
+		const response = await tmdb.get("/tv/latest");
+		dispatch({
+			type: FETCH_TV_LATEST,
+			payload: { ...response.data, media_type: "tv" },
+		});
+	};
+};
+
+export const fetchTvPopular = () => {
+	return async (dispatch) => {
+		const response = await tmdb.get("/tv/popular");
+		dispatch({
+			type: FETCH_TV_POPULAR,
+			payload: { ...response.data, media_type: "tv" },
+		});
+	};
+};
+
+export const fetchTvAction = () => {
+	return async (dispatch) => {
+		const response = await tmdb.get("/discover/tv?with_genres=80");
+		dispatch({
+			type: FETCH_TV_ACTION,
+			payload: { ...response.data, media_type: "tv" },
+		});
+	};
+};
+
+export const fetchTvComedy = () => {
+	return async (dispatch) => {
+		const response = await tmdb.get("/discover/tv?with_genres=35");
+		dispatch({
+			type: FETCH_TV_COMEDY,
+			payload: { ...response.data, media_type: "tv" },
+		});
 	};
 };

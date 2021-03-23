@@ -1,28 +1,40 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
 
-import { deleteFromMyList } from "../../actions";
-import jsonServer from "../../api/jsonServer";
+// import { deleteFromMyList } from "../../actions";
+import db from "../../firebase.js";
 
 function DeleteFavouriteButton({
 	type,
 	userId,
 	id,
 	list,
-	deleteFromMyList,
 	onComponentClick,
+	match,
 }) {
-	const deleteItem = async (id) => {
-		const updatedList = list.filter((item) => item.id !== id);
+	const [icon, setIcon] = useState(null);
+	useEffect(() => {
+		if (match) {
+			match.path === "/mylist" ? setIcon(faTimes) : setIcon(faCheck);
+		} else {
+			setIcon(faCheck);
+		}
+	}, [match]);
 
-		await jsonServer.patch(`/users/${userId}`, {
-			my_list: updatedList,
+	const deleteItem = async (userId) => {
+		const docRef = db.collection("users").doc(userId);
+		const doc = await docRef.get();
+		const data = doc.data();
+		const myList = data.my_list;
+
+		const updatedList = myList.filter((item) => item.id !== id);
+
+		docRef.update({
+			my_list: [...updatedList],
 		});
-
-		deleteFromMyList(updatedList);
 	};
 
 	return (
@@ -32,22 +44,20 @@ function DeleteFavouriteButton({
 					onComponentClick();
 				}
 
-				deleteItem(id);
+				deleteItem(userId);
 			}}
 			className={type}
 		>
-			<FontAwesomeIcon icon={faTimes} />
+			{icon && <FontAwesomeIcon icon={icon} />}
 		</button>
 	);
 }
 
 const mapStateToProps = (state) => {
 	return {
-		userId: state.currentUser.id,
+		userId: state.currentUser.user.uid,
 		list: state.currentUser.my_list,
 	};
 };
 
-export default connect(mapStateToProps, { deleteFromMyList })(
-	DeleteFavouriteButton
-);
+export default connect(mapStateToProps)(DeleteFavouriteButton);

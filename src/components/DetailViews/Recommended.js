@@ -1,4 +1,5 @@
 import React from "react";
+import { v4 as uuidv4 } from "uuid";
 
 import "./styles/Recommended.css";
 import Card from "./Card"; //props: title, date, image, vote_average, overview
@@ -12,6 +13,7 @@ function Recommended({ header, data }) {
 			? data.map((similar) => {
 					return (
 						<Card
+							key={uuidv4()}
 							title={similar.title}
 							date={similar.release_date}
 							image={similar.backdrop_path}

@@ -1,8 +1,11 @@
+import { useEffect } from "react";
 import { Router, Route } from "react-router-dom";
 // import { useEffect } from "react";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
+import { connect } from "react-redux";
 
+import { setCurrentProfile, fetchUserMyList } from "../actions";
 import history from "../history";
 
 // COMPONENTS
@@ -16,18 +19,70 @@ import MoviesPage from "../pages/MoviesPage";
 import MyListPage from "../pages/MyListPage";
 import SeriesPage from "../pages/SeriesPage";
 import TrendingPage from "../pages/TrendingPage";
+import LoginPage from "../pages/LoginPage";
+import SigninPage from "../pages/SigninPage";
+import ChooseAccountPage from "../pages/ChooseAccountPage";
+
+// firebase
+
+import { auth } from "../firebase.js";
+import db from "../firebase.js";
 
 // APIS
 // import tmdb from "../api/tmdb";
 
 import "./styles/App.css";
+import { forEach } from "lodash";
 
 library.add(fab);
 
-function App() {
+function App({ user, setCurrentProfile, fetchUserMyList }) {
+	useEffect(() => {
+		// console.log(user.uid);
+		if (user.uid) {
+			fetchUserMyList(user.uid);
+		}
+
+		const docRef = db
+			.collection("users")
+			.doc("SwdpYEbrYEfvLNFhd3H34kWa20H3")
+			.collection("accounts");
+
+		docRef.get().then((doc) => {
+			doc.forEach((doc) => {
+				console.log(doc.id);
+			});
+		});
+	}, [user.uid, fetchUserMyList]);
+
+	db.collection("users")
+		.doc(user.uid)
+		.onSnapshot(() => {
+			if (user.uid) {
+				fetchUserMyList(user.uid);
+			}
+		});
+
+	useEffect(() => {
+		console.log("siema");
+		const unsubscribe = auth.onAuthStateChanged((authUser) => {
+			if (authUser) {
+				setCurrentProfile(authUser);
+			} else {
+				setCurrentProfile({});
+				history.push("/login");
+			}
+		});
+
+		return unsubscribe;
+	}, [setCurrentProfile]);
+
 	return (
 		<div className="App">
 			<Router history={history}>
+				<Route path="/login" component={LoginPage} />
+				<Route path="/signin" component={SigninPage} />
+				<Route exact path="/" component={ChooseAccountPage} />
 				<Route component={Navbar} />
 				{/* BROWSE */}
 				<Route path="/browse" component={MainPage} />
@@ -82,4 +137,12 @@ function App() {
 	);
 }
 
-export default App;
+const mapStateToProps = (state) => {
+	return {
+		user: state.currentUser.user,
+	};
+};
+
+export default connect(mapStateToProps, { setCurrentProfile, fetchUserMyList })(
+	App
+);

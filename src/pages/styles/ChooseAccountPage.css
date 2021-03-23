@@ -1,0 +1,34 @@
+.ChooseAccountPage {
+	height: 100vh;
+	width: 100%;
+	background-color: black;
+	color: rgba(255, 255, 255, 0.507);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.AccountCard {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
+
+.AccountCard__avatar {
+	display: inline-block;
+	width: 8rem;
+}
+
+.AccountCard__username {
+	display: inline-block;
+}
+
+.AccountCard:hover .AccountCard__avatar {
+	outline: 1px solid white;
+}
+
+.AccountCard:hover .AccountCard__username {
+	color: white;
+}

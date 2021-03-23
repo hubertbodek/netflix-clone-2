@@ -11,7 +11,7 @@ import {
 	FETCH_DOCUMENTARIES,
 	FETCH_HORROR,
 	// CURRENT PROFILE TYPES
-	FETCH_CURRENT_PROFILE,
+	SET_CURRENT_PROFILE,
 	DELETE_FROM_MY_LIST,
 	// ADD_TO_MY_LIST,
 	// REMOVE_FROM_MY_LIST,
@@ -28,6 +28,13 @@ import {
 	FETCH_MOVIE_VIDEOS,
 	FETCH_TV_VIDEOS,
 	SET_VIDEOS_TO_NULL,
+	// FETCH TV GENRES
+	FETCH_TV_LATEST,
+	FETCH_TV_POPULAR,
+	FETCH_TV_ACTION,
+	FETCH_TV_COMEDY,
+	FETCH_USER_MY_LIST,
+	SET_CURRENT_ACCOUNT,
 } from "../actions/types";
 
 const fetchTrendingReducer = (state = [], action) => {
@@ -104,13 +111,26 @@ const fetchHorrorReducer = (state = [], action) => {
 
 // USER PROFILE DATA
 
-const fetchUserProfile = (state = {}, action) => {
+const userProfile = (
+	// initial state
+	state = {
+		user: {},
+		currentAccount: {},
+		my_list: [],
+		avatar_url: [],
+	},
+	action
+) => {
 	switch (action.type) {
-		case FETCH_CURRENT_PROFILE:
-			return action.payload;
+		case SET_CURRENT_PROFILE:
+			return { ...state, user: action.payload };
 		// case UPDATE_MY_LIST:
 		case DELETE_FROM_MY_LIST:
 			return { ...state, my_list: action.updatedList };
+		case FETCH_USER_MY_LIST:
+			return { ...state, my_list: action.payload };
+		case SET_CURRENT_ACCOUNT:
+			return { ...state, currentAccount: action.payload };
 		default:
 			return state;
 	}
@@ -177,6 +197,42 @@ const fetchVideos = (state = {}, action) => {
 	}
 };
 
+const fetchTvLatest = (state = {}, action) => {
+	switch (action.type) {
+		case FETCH_TV_LATEST:
+			return action.payload;
+		default:
+			return state;
+	}
+};
+
+const fetchTvPopular = (state = {}, action) => {
+	switch (action.type) {
+		case FETCH_TV_POPULAR:
+			return action.payload;
+		default:
+			return state;
+	}
+};
+
+const fetchTvAction = (state = {}, action) => {
+	switch (action.type) {
+		case FETCH_TV_ACTION:
+			return action.payload;
+		default:
+			return state;
+	}
+};
+
+const fetchTvComedy = (state = {}, action) => {
+	switch (action.type) {
+		case FETCH_TV_COMEDY:
+			return action.payload;
+		default:
+			return state;
+	}
+};
+
 export default combineReducers({
 	trending: fetchTrendingReducer,
 	netflixOrginals: fetchNetflixOrginalsReducer,
@@ -187,10 +243,14 @@ export default combineReducers({
 	documentaries: fetchDocumentariesReducer,
 	horror: fetchHorrorReducer,
 	// profiles
-	currentUser: fetchUserProfile,
+	currentUser: userProfile,
 	detailsToDisplay: fetchDetails,
 	credits: fetchCredits,
 	seasonDetail: fetchSeasonDetail,
 	similar: fetchSimilar,
 	videos: fetchVideos,
+	tvLatest: fetchTvLatest,
+	tvPopular: fetchTvPopular,
+	tvAction: fetchTvAction,
+	tvComedy: fetchTvComedy,
 });
