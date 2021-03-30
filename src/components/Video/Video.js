@@ -10,6 +10,7 @@ import {
 	fetchMovieVideos,
 	setVideosToNull,
 } from "../../actions";
+import _ from "lodash";
 
 function Video({
 	videos,
@@ -35,7 +36,7 @@ function Video({
 	// console.log(location);
 	return (
 		<div className="Video">
-			{videos ? (
+			{!_.isEmpty(videos) ? (
 				<>
 					<BackButton
 						type={"Video__back btn--round"}

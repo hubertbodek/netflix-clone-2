@@ -6,7 +6,7 @@ import logo from "../imgs/netflix_logo.png";
 import SearchBar from "./SearchBar";
 import Profile from "./Profile";
 
-function Navbar({ location }) {
+function Navbar({ location, match }) {
 	const [mount, setMount] = useState(false);
 
 	useEffect(() => {

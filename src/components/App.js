@@ -5,7 +5,7 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import { connect } from "react-redux";
 
-import { setCurrentProfile, fetchUserMyList } from "../actions";
+import { setCurrentProfile, fetchMyList, setCurrentAccount } from "../actions";
 import history from "../history";
 
 // COMPONENTS
@@ -22,6 +22,7 @@ import TrendingPage from "../pages/TrendingPage";
 import LoginPage from "../pages/LoginPage";
 import SigninPage from "../pages/SigninPage";
 import ChooseAccountPage from "../pages/ChooseAccountPage";
+import MyAccountPage from "../pages/MyAccountPage";
 
 // firebase
 
@@ -32,49 +33,76 @@ import db from "../firebase.js";
 // import tmdb from "../api/tmdb";
 
 import "./styles/App.css";
-import { forEach } from "lodash";
+// import { forEach } from "lodash";
 
 library.add(fab);
 
-function App({ user, setCurrentProfile, fetchUserMyList }) {
+function App({
+	user,
+	currentAccount,
+	setCurrentProfile,
+	fetchMyList,
+	setCurrentAccount,
+}) {
 	useEffect(() => {
-		// console.log(user.uid);
 		if (user.uid) {
-			fetchUserMyList(user.uid);
+			fetchMyList(user.uid);
+		}
+	}, [user.uid, fetchMyList]);
+
+	useEffect(() => {
+		if (user && currentAccount) {
+			const userRef = db.collection("users").doc(user.uid);
+			const accRef = userRef.collection("accounts").doc(currentAccount.id);
+
+			const unsubAccountList = accRef.onSnapshot(() => {
+				console.log(user.uid, currentAccount.id, "elo xd");
+				if (user.uid && currentAccount.id) {
+					fetchMyList(user.uid, currentAccount.id);
+				}
+			});
+			return () => {
+				unsubAccountList();
+			};
 		}
 
-		const docRef = db
-			.collection("users")
-			.doc("SwdpYEbrYEfvLNFhd3H34kWa20H3")
-			.collection("accounts");
-
-		docRef.get().then((doc) => {
-			doc.forEach((doc) => {
-				console.log(doc.id);
-			});
-		});
-	}, [user.uid, fetchUserMyList]);
-
-	db.collection("users")
-		.doc(user.uid)
-		.onSnapshot(() => {
-			if (user.uid) {
-				fetchUserMyList(user.uid);
-			}
-		});
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [user.uid, currentAccount.id]);
 
 	useEffect(() => {
-		console.log("siema");
 		const unsubscribe = auth.onAuthStateChanged((authUser) => {
+			// if logged in
 			if (authUser) {
 				setCurrentProfile(authUser);
+
+				// getting current account
+				const getCurrentAccount = async () => {
+					const userRef = db.collection("users").doc(authUser.uid);
+					const getUser = await userRef.get();
+					const userData = getUser.data();
+
+					const accountId = userData?.currentAccountId;
+					const accountRef = userRef.collection("accounts").doc(accountId);
+					const getAccount = await accountRef.get();
+					const accountData = getAccount.data();
+
+					accountData && setCurrentAccount(accountData);
+				};
+
+				getCurrentAccount();
+				// if logged out
 			} else {
 				setCurrentProfile({});
 				history.push("/login");
 			}
 		});
 
-		return unsubscribe;
+		// clearing listener
+		return () => {
+			unsubscribe();
+		};
+
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [setCurrentProfile]);
 
 	return (
@@ -129,9 +157,18 @@ function App({ user, setCurrentProfile, fetchUserMyList }) {
 						return <Modal {...props} onDismissURL="/mylist" />;
 					}}
 				/>
-				<Route component={Footer} />
+				{/* MY ACCOUNT PAGE */}
+				<Route path="/myaccount" component={MyAccountPage} />
 				{/* WATCH VIDEO */}
 				<Route path="/watch" component={Video} />
+				{/* MODAL SEARCH */}
+				<Route
+					path="/search/:id"
+					render={(props) => {
+						return <Modal {...props} onDismissURL="/mylist" />;
+					}}
+				/>
+				<Route component={Footer} />
 			</Router>
 		</div>
 	);
@@ -140,9 +177,12 @@ function App({ user, setCurrentProfile, fetchUserMyList }) {
 const mapStateToProps = (state) => {
 	return {
 		user: state.currentUser.user,
+		currentAccount: state.currentUser.currentAccount,
 	};
 };
 
-export default connect(mapStateToProps, { setCurrentProfile, fetchUserMyList })(
-	App
-);
+export default connect(mapStateToProps, {
+	setCurrentProfile,
+	fetchMyList,
+	setCurrentAccount,
+})(App);

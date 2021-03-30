@@ -1,15 +1,27 @@
-.Profile {
+.Profile{
 	height: 60%;
+	position: relative;
+}
+
+.Profile__avatar-container {
+	height: 100%;
 	transition: all 0.1s;
 	margin: 0 1rem;
 	cursor: pointer;
+
 }
 
-.Profile:hover {
+.Profile__avatar:hover {
 	transform: scale(1.03);
 	outline: 1px rgba(255, 255, 255, 0.541) solid;
 }
 
 .Profile__avatar {
 	height: 100%;
+}
+
+.Profile__menu{
+	position: absolute !important;
+	top: 4rem !important;
+	right: 1rem !important;
 }

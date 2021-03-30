@@ -11,6 +11,7 @@ function DeleteFavouriteButton({
 	type,
 	userId,
 	id,
+	accountId,
 	list,
 	onComponentClick,
 	match,
@@ -24,8 +25,12 @@ function DeleteFavouriteButton({
 		}
 	}, [match]);
 
-	const deleteItem = async (userId) => {
-		const docRef = db.collection("users").doc(userId);
+	const deleteItem = async (userId, accountId) => {
+		const docRef = db
+			.collection("users")
+			.doc(userId)
+			.collection("accounts")
+			.doc(accountId);
 		const doc = await docRef.get();
 		const data = doc.data();
 		const myList = data.my_list;
@@ -44,7 +49,7 @@ function DeleteFavouriteButton({
 					onComponentClick();
 				}
 
-				deleteItem(userId);
+				deleteItem(userId, accountId);
 			}}
 			className={type}
 		>
@@ -56,6 +61,7 @@ function DeleteFavouriteButton({
 const mapStateToProps = (state) => {
 	return {
 		userId: state.currentUser.user.uid,
+		accountId: state.currentUser.currentAccount.id,
 		list: state.currentUser.my_list,
 	};
 };

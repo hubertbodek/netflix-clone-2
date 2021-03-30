@@ -60,8 +60,6 @@ function SigninForm() {
 										uid: userCredential.user.uid,
 										email: userCredential.user.email,
 									},
-									my_list: [],
-									avatar_url: "",
 								})
 								.catch((err) => console.log(err));
 							setSubmitting(true);

@@ -1,0 +1,69 @@
+.MyAccountPage {
+	height: 100vh;
+	width: 100%;
+	/* display: grid;
+	place-items: center; */
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.MyAccountPage__card {
+	background-color: black;
+	color: white;
+	padding: 3rem;
+	min-height: 55rem;
+	/* width: 70rem; */
+	width: 50rem;
+	min-width: 18rem;
+	border-radius: 5px;
+	display: grid;
+}
+
+.MyAccountPage__credentials {
+	display: flex;
+	align-items: flex-start;
+	gap: 1.8rem;
+}
+
+.MyAccountPage__change-avatar {
+	display: grid;
+	position: relative;
+	align-content: center;
+	justify-content: center;
+	width: 100%;
+	grid-template-columns: repeat(auto-fill, minmax(7rem, 1fr));
+	gap: 2rem;
+	padding: 1.5rem;
+	border: 1px solid rgba(131, 131, 131, 0.219);
+	border-radius: 10px;
+}
+
+.MyPageAccount__change-header {
+	position: absolute;
+	left: 4rem;
+	top: -2rem;
+	display: inline-block;
+	padding: 1rem;
+	height: auto;
+	width: auto;
+	background: #000;
+}
+
+.MyAccountPage__current-avatar-container {
+	width: 8rem;
+}
+
+.MyAccountPage__avatar {
+	width: 100%;
+}
+
+.chosen {
+	outline: 2px solid white;
+}
+
+.btns-container {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+}

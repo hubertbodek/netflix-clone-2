@@ -10,7 +10,7 @@ function Card({ title, date, image, vote_average, overview }) {
 	return (
 		<div className="Card">
 			<div className="Card__image">
-				<img src={`${path}${image}`} alt="poster" />
+				{image && <img src={`${path}${image}`} alt="poster" />}
 			</div>
 			<div className="Card__description">
 				<div className="Card__header">

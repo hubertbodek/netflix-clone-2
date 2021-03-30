@@ -27,7 +27,7 @@ function MyListPage({ media, match, userId }) {
 const mapStateToProps = (state) => {
 	return {
 		userId: state.currentUser.id,
-		media: state.currentUser.my_list,
+		media: state.currentUser.currentAccount.my_list,
 	};
 };
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { connect } from "react-redux";
 
 import db from "../../firebase.js";
@@ -6,16 +6,19 @@ import defaultAvatar from "../../imgs/avatars/avatar1.png";
 
 function AddAccountToUser({ userId }) {
 	const addUser = async () => {
-		const accountsRef = db
+		const newAccRef = db
 			.collection("users")
 			.doc(userId)
-			.collection("accounts");
+			.collection("accounts")
+			.doc();
 
 		// const { docs } = await accountsRef.get();
 
-		accountsRef.add({
+		newAccRef.set({
+			id: newAccRef.id,
 			my_list: [],
 			avatar_url: defaultAvatar,
+			username: "User",
 		});
 	};
 

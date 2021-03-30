@@ -1,34 +1,41 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
+import { v4 as uuidv4 } from "uuid";
 
 import AccountCard from "../components/AccountCard";
 import "./styles/ChooseAccountPage.css";
 import AddAccountToUser from "../components/Buttons/AddAccountToUser";
 import db from "../firebase.js";
 
-function ChooseAccountPage({ userId }) {
+function ChooseAccountPage({ user, userId }) {
 	const [showButton, setShowButton] = useState(true);
 	const [accounts, setAccounts] = useState([]);
 
-	db.collection("users")
-		.doc(userId)
-		.collection("accounts")
-		.onSnapshot(({ docs }) => {
-			const accounts = docs.map((doc) => {
-				return {
-					...doc.data(),
-				};
-			});
-			setAccounts(accounts);
+	useEffect(() => {
+		const unsubscribe = db
+			.collection("users")
+			.doc(userId)
+			.collection("accounts")
+			.onSnapshot(({ docs }) => {
+				const accounts = docs.map((doc) => {
+					return {
+						...doc.data(),
+					};
+				});
+				setAccounts(accounts);
 
-			if (docs.length >= 4) {
-				setShowButton(false);
-			}
-		});
+				if (docs.length >= 4) {
+					setShowButton(false);
+				}
+			});
+
+		return unsubscribe;
+	}, [userId]);
 
 	const renderCards = () => {
 		return accounts.map((account) => {
-			return <AccountCard account={account} username="Bob" />;
+			// console.log(account)
+			return <AccountCard key={uuidv4()} account={account} user={user} />;
 		});
 	};
 
@@ -42,6 +49,7 @@ function ChooseAccountPage({ userId }) {
 
 const mapStateToProps = (state) => {
 	return {
+		user: state.currentUser.user,
 		userId: state.currentUser.user.uid,
 	};
 };

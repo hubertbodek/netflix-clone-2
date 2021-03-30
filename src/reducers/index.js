@@ -33,8 +33,11 @@ import {
 	FETCH_TV_POPULAR,
 	FETCH_TV_ACTION,
 	FETCH_TV_COMEDY,
-	FETCH_USER_MY_LIST,
+	FETCH_MY_LIST,
 	SET_CURRENT_ACCOUNT,
+	SEARCH_MEDIA,
+	SET_SEARCH_TO_NULL,
+	CHANGE_AVATAR_AND_USERNAME,
 } from "../actions/types";
 
 const fetchTrendingReducer = (state = [], action) => {
@@ -116,7 +119,6 @@ const userProfile = (
 	state = {
 		user: {},
 		currentAccount: {},
-		my_list: [],
 		avatar_url: [],
 	},
 	action
@@ -127,10 +129,25 @@ const userProfile = (
 		// case UPDATE_MY_LIST:
 		case DELETE_FROM_MY_LIST:
 			return { ...state, my_list: action.updatedList };
-		case FETCH_USER_MY_LIST:
-			return { ...state, my_list: action.payload };
+		case FETCH_MY_LIST:
+			return {
+				...state,
+				currentAccount: {
+					...state.currentAccount,
+					my_list: action.payload,
+				},
+			};
 		case SET_CURRENT_ACCOUNT:
 			return { ...state, currentAccount: action.payload };
+		case CHANGE_AVATAR_AND_USERNAME:
+			return {
+				...state,
+				currentAccount: {
+					...state.currentAccount,
+					avatar_url: action.avatar,
+					username: action.username,
+				},
+			};
 		default:
 			return state;
 	}
@@ -233,6 +250,17 @@ const fetchTvComedy = (state = {}, action) => {
 	}
 };
 
+const searchResults = (state = {}, action) => {
+	switch (action.type) {
+		case SEARCH_MEDIA:
+			return action.payload;
+		case SET_SEARCH_TO_NULL:
+			return action.payload;
+		default:
+			return state;
+	}
+};
+
 export default combineReducers({
 	trending: fetchTrendingReducer,
 	netflixOrginals: fetchNetflixOrginalsReducer,
@@ -253,4 +281,5 @@ export default combineReducers({
 	tvPopular: fetchTvPopular,
 	tvAction: fetchTvAction,
 	tvComedy: fetchTvComedy,
+	searchResults,
 });

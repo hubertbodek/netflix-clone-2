@@ -3,27 +3,29 @@ import { connect } from "react-redux";
 import { Button, withStyles } from "@material-ui/core";
 
 import { setCurrentProfile } from "../../actions";
-import "./styles/LogoutButton.css";
 import { auth } from "../../firebase.js";
 
 const RedButton = withStyles({
 	root: {
 		backgroundColor: "red",
+		borderRadius: 0,
+		width: '80%',
+		'&:hover': {
+			backgroundColor: 'rgb(200,0,0)'
+		}
 	},
 })(Button);
 
 function LogoutButton({ setCurrentProfile }) {
 	return (
-		<div>
-			<RedButton
-				className="LogoutButton"
-				onClick={() => {
-					auth.signOut();
-				}}
-			>
-				Logout
-			</RedButton>
-		</div>
+		<RedButton
+			className="LogoutButton"
+			onClick={() => {
+				auth.signOut();
+			}}
+		>
+			Logout
+		</RedButton>
 	);
 }
 

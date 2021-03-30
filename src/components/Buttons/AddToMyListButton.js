@@ -15,6 +15,7 @@ function AddToMyListButton({
 	detail,
 	media_type,
 	my_list,
+	accountId,
 }) {
 	const [isChecked, setIsChecked] = useState(false);
 
@@ -28,11 +29,15 @@ function AddToMyListButton({
 		}
 	}, [user, media_id, my_list]);
 
-	const addToMyList = async (uid) => {
-		const docRef = db.collection("users").doc(uid);
-		const doc = await docRef.get();
+	const addToMyList = async (uid, accountId) => {
+		const accountRef = db
+			.collection("users")
+			.doc(uid)
+			.collection("accounts")
+			.doc(accountId);
+		const doc = await accountRef.get();
 		const data = doc.data();
-		const myList = data.my_list;
+		const myList = data.my_list || [];
 
 		myList.push({
 			id: media_id,
@@ -41,7 +46,7 @@ function AddToMyListButton({
 			media_type: media_type,
 		});
 
-		docRef.update({
+		accountRef.update({
 			my_list: myList,
 		});
 		setIsChecked(true);
@@ -61,7 +66,7 @@ function AddToMyListButton({
 				/>
 			) : (
 				<button
-					onClick={() => !isChecked && addToMyList(user.uid)}
+					onClick={() => !isChecked && addToMyList(user.uid, accountId)}
 					className={`AddToMyListButton ${type}`}
 				>
 					<FontAwesomeIcon icon={faPlus} />
@@ -74,9 +79,10 @@ function AddToMyListButton({
 const mapStateToProps = (state) => {
 	return {
 		media_id: state.detailsToDisplay.id,
+		accountId: state.currentUser.currentAccount.id,
 		detail: state.detailsToDisplay,
 		user: state.currentUser.user,
-		my_list: state.currentUser.my_list,
+		my_list: state.currentUser.currentAccount.my_list,
 	};
 };
 

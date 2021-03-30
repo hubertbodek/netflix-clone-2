@@ -1,20 +1,42 @@
-.SearchBar {
-	/* position: relative; */
+.SearchBar__container {
+	display: flex;
+	position: relative;
+	z-index: 9;
 }
 
-.SearchBar__icon {
-	transform: translateX(0);
-	transition: all 0.2s;
+.SearchBar {
+	background-color: rgba(97, 97, 97);
+	border-radius: 25px;
+	transform-origin: right;
+	display: inline-flex;
+	align-items: center;
+	max-width: fit-content;
+	padding: 0.5rem;
+	/* min-width: 5rem; */
 }
 
 .SearchBar__input {
+	/* display: inline-table; */
 	transition: all 0.2s;
+	background-color: transparent;
+	outline: none;
+	border: none;
+	color: white;
+	height: 100%;
+	/* padding: 0.5rem 2px; */
+	transform-origin: right;
+	width: 15rem;
 }
 
-/* .icon-active {
-	transform: translateX(1rem);
+.listItem__container {
+	display: flex;
+	justify-content: space-between;
 }
 
-.input-active {
+.listItem__img {
+	width: 2.5rem;
+}
+
+.listItem__img img {
 	width: 100%;
-} */
+}

@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import React, { useEffect } from "react";
+import _ from "lodash";
 
 import {
 	fetchTrending,
@@ -35,24 +36,17 @@ function MainPage({
 	location,
 }) {
 	useEffect(() => {
-		fetchTrending();
-		fetchNetflixOrginals();
-		fetchTopRated();
-		fetchAction();
-		fetchComedy();
-		fetchRomance();
-		fetchDocumentaries();
-		fetchHorror();
-	}, [
-		fetchTrending,
-		fetchNetflixOrginals,
-		fetchTopRated,
-		fetchAction,
-		fetchComedy,
-		fetchRomance,
-		fetchDocumentaries,
-		fetchHorror,
-	]);
+		_.isEmpty(trending) && fetchTrending();
+		_.isEmpty(netflixOrginals) && fetchNetflixOrginals();
+		_.isEmpty(topRated) && fetchTopRated();
+		_.isEmpty(action) && fetchAction();
+		_.isEmpty(comedy) && fetchComedy();
+		_.isEmpty(romance) && fetchRomance();
+		_.isEmpty(documentaries) && fetchDocumentaries();
+		_.isEmpty(horror) && fetchHorror();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [fetchTrending, trending]);
+
 	return (
 		<div className="MainPage page">
 			<Hero match={match} />

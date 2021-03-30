@@ -1,0 +1,9 @@
+{
+  "editor.fontFamily": "Fira Code",
+  "emmet.preferences": {
+  
+  },
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact"
+  }
+}

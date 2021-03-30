@@ -28,6 +28,7 @@ function Modal({
 	setDetailsToNull,
 	history,
 }) {
+	// console.log(history);
 	// MEDIA TYPES: TV OR MOVIE
 	const [currentMediaType, setCurrentMediaType] = useState(null);
 
@@ -59,7 +60,8 @@ function Modal({
 	return ReactDOM.createPortal(
 		<div
 			onClick={() => {
-				history.push(onDismissURL);
+				// history.push(onDismissURL);
+				history.goBack();
 			}}
 			className="Modal"
 		>

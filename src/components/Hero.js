@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import DetailsButton from "./Buttons/DetailsButton";
 import "./styles/Hero.css";
 import truncate from "../utilities/truncate";
+import _ from "lodash";
 
 // base url to hero image
 const path = "https://image.tmdb.org/t/p/w1280";
@@ -14,12 +15,13 @@ const path = "https://image.tmdb.org/t/p/w1280";
 function Hero({ trending, match }) {
 	const [randomMovie, setRandomMovie] = useState({});
 	useEffect(() => {
-		if (trending.results) {
+		if (_.isEmpty(randomMovie) && trending.results) {
 			const getRandomMovie =
 				trending.results[Math.floor(Math.random() * trending.results.length)];
 
 			setRandomMovie(getRandomMovie);
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [trending.results]);
 
 	return randomMovie.id ? (

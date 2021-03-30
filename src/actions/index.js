@@ -35,8 +35,11 @@ import {
 	FETCH_TV_POPULAR,
 	FETCH_TV_ACTION,
 	FETCH_TV_COMEDY,
-	FETCH_USER_MY_LIST,
+	FETCH_MY_LIST,
 	SET_CURRENT_ACCOUNT,
+	SEARCH_MEDIA,
+	SET_SEARCH_TO_NULL,
+	CHANGE_AVATAR_AND_USERNAME,
 } from "./types";
 
 import tmdb from "../api/tmdb";
@@ -144,12 +147,24 @@ export const setCurrentAccount = (account) => {
 	};
 };
 
-export const fetchUserMyList = (uid) => {
+export const changeAvatarAndUsername = (avatar, username) => {
+	return {
+		type: CHANGE_AVATAR_AND_USERNAME,
+		avatar,
+		username,
+	};
+};
+
+export const fetchMyList = (uid, accountId) => {
 	return async (dispatch) => {
-		const docRef = db.collection("users").doc(uid);
+		const docRef = db
+			.collection("users")
+			.doc(uid)
+			.collection("accounts")
+			.doc(accountId);
 		const doc = await docRef.get();
 		const data = doc.data();
-		dispatch({ type: FETCH_USER_MY_LIST, payload: data ? data.my_list : [] });
+		dispatch({ type: FETCH_MY_LIST, payload: data ? data.my_list : [] });
 	};
 };
 
@@ -303,5 +318,28 @@ export const fetchTvComedy = () => {
 			type: FETCH_TV_COMEDY,
 			payload: { ...response.data, media_type: "tv" },
 		});
+	};
+};
+
+export const searchMedia = (query) => {
+	return async (dispatch) => {
+		try {
+			const response = await tmdb.get("/search/multi", {
+				params: {
+					query,
+				},
+			});
+			// console.log(response);
+			dispatch({ type: SEARCH_MEDIA, payload: response.data });
+		} catch {
+			dispatch({ type: SEARCH_MEDIA, payload: {} });
+		}
+	};
+};
+
+export const setSearchToNull = () => {
+	return {
+		type: SET_SEARCH_TO_NULL,
+		payload: {},
 	};
 };
