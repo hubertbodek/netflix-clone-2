@@ -9,6 +9,7 @@ import db from "../firebase.js";
 
 function ChooseAccountPage({ user, userId }) {
 	const [showButton, setShowButton] = useState(true);
+	const [header, setHeader] = useState("Choose your account");
 	const [accounts, setAccounts] = useState([]);
 
 	useEffect(() => {
@@ -24,7 +25,9 @@ function ChooseAccountPage({ user, userId }) {
 				});
 				setAccounts(accounts);
 
-				if (docs.length >= 4) {
+				if (docs.length === 0) {
+					setHeader("Create your first account");
+				} else if (docs.length >= 4) {
 					setShowButton(false);
 				}
 			});
@@ -41,8 +44,11 @@ function ChooseAccountPage({ user, userId }) {
 
 	return (
 		<div className="ChooseAccountPage">
-			{renderCards()}
-			{showButton && <AddAccountToUser />}
+			<h2>{header}</h2>
+			<div className="ChooseAccountPage__accounts">
+				{renderCards()}
+				{showButton && <AddAccountToUser />}
+			</div>
 		</div>
 	);
 }

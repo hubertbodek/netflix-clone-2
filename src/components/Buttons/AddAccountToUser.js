@@ -12,8 +12,6 @@ function AddAccountToUser({ userId }) {
 			.collection("accounts")
 			.doc();
 
-		// const { docs } = await accountsRef.get();
-
 		newAccRef.set({
 			id: newAccRef.id,
 			my_list: [],

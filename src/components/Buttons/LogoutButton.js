@@ -7,12 +7,13 @@ import { auth } from "../../firebase.js";
 
 const RedButton = withStyles({
 	root: {
-		backgroundColor: "red",
+		backgroundColor: "rgb(229,9,20)",
 		borderRadius: 0,
-		width: '80%',
-		'&:hover': {
-			backgroundColor: 'rgb(200,0,0)'
-		}
+		width: "80%",
+		margin: "auto",
+		"&:hover": {
+			backgroundColor: "rgb(200,0,0)",
+		},
 	},
 })(Button);
 

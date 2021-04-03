@@ -20,7 +20,6 @@ function Video({
 	setVideosToNull,
 	history,
 }) {
-	// console.log(history);
 	useEffect(() => {
 		const parsed = qs.parse(location.search);
 		if (parsed.source === "tv") {
@@ -33,7 +32,6 @@ function Video({
 			setVideosToNull();
 		};
 	}, [location, fetchMovieVideos, fetchTvVideos, setVideosToNull]);
-	// console.log(location);
 	return (
 		<div className="Video">
 			{!_.isEmpty(videos) ? (

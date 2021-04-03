@@ -8,7 +8,7 @@
 	justify-content: center;
 }
 
-.MyAccountPage__card {
+.page-card {
 	background-color: black;
 	color: white;
 	padding: 3rem;
@@ -20,13 +20,13 @@
 	display: grid;
 }
 
-.MyAccountPage__credentials {
+.page-credentials {
 	display: flex;
 	align-items: flex-start;
 	gap: 1.8rem;
 }
 
-.MyAccountPage__change-avatar {
+.page-grid {
 	display: grid;
 	position: relative;
 	align-content: center;
@@ -39,7 +39,7 @@
 	border-radius: 10px;
 }
 
-.MyPageAccount__change-header {
+.page-change-header {
 	position: absolute;
 	left: 4rem;
 	top: -2rem;
@@ -50,11 +50,11 @@
 	background: #000;
 }
 
-.MyAccountPage__current-avatar-container {
+.page-current-avatar-container {
 	width: 8rem;
 }
 
-.MyAccountPage__avatar {
+.page-avatar {
 	width: 100%;
 }
 
@@ -66,4 +66,10 @@
 	display: flex;
 	align-items: center;
 	justify-content: flex-end;
+}
+
+.MuiIconButton-root {
+	background-color: rgb(56, 56, 56) !important;
+	color: white !important;
+	padding: 0.7rem !important;
 }

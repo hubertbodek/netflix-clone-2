@@ -1,0 +1,16 @@
+.MyProfilePage {
+	height: 100vh;
+	width: 100%;
+	display: grid;
+	place-items: center;
+}
+
+.page-email:hover {
+	color: #e50914;
+}
+
+.page-flex-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}

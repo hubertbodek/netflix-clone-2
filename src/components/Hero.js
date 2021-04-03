@@ -9,8 +9,6 @@ import _ from "lodash";
 // base url to hero image
 const path = "https://image.tmdb.org/t/p/w1280";
 
-// helper function
-
 // component
 function Hero({ trending, match }) {
 	const [randomMovie, setRandomMovie] = useState({});

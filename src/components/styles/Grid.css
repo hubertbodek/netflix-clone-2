@@ -2,9 +2,17 @@
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(24rem, 1fr));
 	gap: 2.5rem;
+	justify-items: center;
+	align-content: center;
 	/* padding: 2rem 0; */
 	padding-top: 3rem;
 	padding-bottom: 1rem;
+}
+
+@media (max-width: 360px) {
+	.Grid {
+		grid-template-columns: repeat(2, minmax(24rem, 1fr));
+	}
 }
 
 .Grid__img {

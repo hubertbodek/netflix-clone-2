@@ -28,7 +28,6 @@ function InputField({
 			className={className}
 			error={error}
 			helperText={meta.error}
-			// id="filled-basic"
 			label={label}
 			variant="filled"
 		/>

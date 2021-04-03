@@ -65,14 +65,16 @@
 	padding: 0 4rem;
 }
 
+@media (max-width: 424px) {
+	.DetailDescription__container {
+		grid-template-columns: 1fr;
+	}
+}
+
 .DetailDescription__metadata {
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
-}
-
-.DetailDescription__metadata .rating {
-	/* color: rgb(0, 219, 0) */
 }
 
 .DetailDescription__overview {

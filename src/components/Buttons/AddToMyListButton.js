@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import _ from "lodash";
 
-// import jsonServer from "../../api/jsonServer";
 import DeleteFavouriteButton from "./DeleteFavouriteButton";
 import db from "../../firebase.js";
 

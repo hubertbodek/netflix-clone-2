@@ -13,3 +13,9 @@
 	width: 100%;
 	grid-template-columns: repeat(3, minmax(min-content, 1fr));
 }
+
+@media (max-width: 468px) {
+	.Recommended__grid-container {
+		grid-template-columns: repeat(2, minmax(min-content, 1fr));
+	}
+}

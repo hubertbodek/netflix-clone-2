@@ -33,7 +33,6 @@ function MainPage({
 	fetchDocumentaries,
 	fetchHorror,
 	match,
-	location,
 }) {
 	useEffect(() => {
 		_.isEmpty(trending) && fetchTrending();

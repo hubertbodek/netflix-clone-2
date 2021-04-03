@@ -1,0 +1,38 @@
+.list {
+	width: 100%;
+	background-color: rgb(27, 27, 27);
+	color: white;
+}
+
+.link__mobile {
+	width: 100%;
+}
+
+.selected__mobile::after {
+	display: none;
+}
+
+.Navbar__logo-container {
+	flex: 1;
+	display: flex;
+	justify-content: flex-start;
+}
+
+.Navbar__button-container {
+	flex: 1;
+	display: flex;
+	justify-content: flex-end;
+}
+
+.Navbar__hamburger-container {
+	position: relative;
+	z-index: 99999;
+	/* height: 80%;
+	width: 3rem; */
+	/* margin-right: 2rem; */
+	padding: 2rem;
+}
+
+.MuiDrawer-paperAnchorTop {
+	margin-top: 5rem !important;
+}

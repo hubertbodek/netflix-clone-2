@@ -7,7 +7,6 @@ import { connect } from "react-redux";
 import { fetchSeasonDetail, setSeasonDetailToNull } from "../../actions";
 
 import "./styles/EpisodesView.css";
-import "../Buttons/styles/Select.css";
 
 const path = "https://image.tmdb.org/t/p/w300";
 

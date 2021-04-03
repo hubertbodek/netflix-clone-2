@@ -4,6 +4,15 @@
 	background-color: black;
 	color: rgba(255, 255, 255, 0.507);
 	display: flex;
+	gap: 2rem;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.ChooseAccountPage__accounts {
+	display: flex;
+	gap: 2rem;
 	justify-content: center;
 	align-items: center;
 }
@@ -23,6 +32,7 @@
 
 .AccountCard__username {
 	display: inline-block;
+	/* margin-top: 2rem; */
 }
 
 .AccountCard:hover .AccountCard__avatar {

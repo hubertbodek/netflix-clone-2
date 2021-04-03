@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
 
-// import { deleteFromMyList } from "../../actions";
 import db from "../../firebase.js";
 
 function DeleteFavouriteButton({

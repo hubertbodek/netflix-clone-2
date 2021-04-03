@@ -34,9 +34,23 @@
 }
 
 .listItem__img {
-	width: 2.5rem;
+	width: 4rem;
 }
 
 .listItem__img img {
 	width: 100%;
+}
+
+.listItem__info {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	margin: 0rem 1rem;
+}
+
+.listItem__lower {
+	display: flex;
+	/* width: 100%; */
+	/* justify-content: space-evenly; */
+	gap: 1rem;
 }

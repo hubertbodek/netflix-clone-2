@@ -32,7 +32,6 @@ function SeriesPage({
 		_.isEmpty(tvComedy) && fetchTvComedy();
 		_.isEmpty(netflixOrginals) && fetchNetflixOrginals();
 		_.isEmpty(tvPopular) && fetchTvPopular();
-		// console.log(_.isEmpty({ tak: "tak" }) ? "puste" : "nie");
 
 		// IF ONE OF THEM ARE FETCHED, THE OTHERS ARE TOO
 

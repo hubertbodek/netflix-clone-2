@@ -4,12 +4,14 @@ import { Router, Route } from "react-router-dom";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import { connect } from "react-redux";
+import { useMedia } from "react-media";
 
 import { setCurrentProfile, fetchMyList, setCurrentAccount } from "../actions";
 import history from "../history";
 
 // COMPONENTS
 import Navbar from "./Navbar";
+import NavbarMobile from "./NavbarMobile";
 import Footer from "./Footer/Footer";
 import Modal from "./Modal";
 import Video from "./Video/Video";
@@ -23,19 +25,21 @@ import LoginPage from "../pages/LoginPage";
 import SigninPage from "../pages/SigninPage";
 import ChooseAccountPage from "../pages/ChooseAccountPage";
 import MyAccountPage from "../pages/MyAccountPage";
+import MyProfilePage from "../pages/MyProfilePage";
 
 // firebase
 
 import { auth } from "../firebase.js";
 import db from "../firebase.js";
-
-// APIS
-// import tmdb from "../api/tmdb";
-
 import "./styles/App.css";
-// import { forEach } from "lodash";
 
 library.add(fab);
+
+const GLOBAL_MEDIA_QUERIES = {
+	small: "(max-width: 568px)",
+	// medium: "(min-width: 600px) and (max-width: 1199px)",
+	// large: "(min-width: 1200px)"
+};
 
 function App({
 	user,
@@ -44,6 +48,8 @@ function App({
 	fetchMyList,
 	setCurrentAccount,
 }) {
+	const matches = useMedia({ queries: GLOBAL_MEDIA_QUERIES });
+
 	useEffect(() => {
 		if (user.uid) {
 			fetchMyList(user.uid);
@@ -56,7 +62,6 @@ function App({
 			const accRef = userRef.collection("accounts").doc(currentAccount.id);
 
 			const unsubAccountList = accRef.onSnapshot(() => {
-				console.log(user.uid, currentAccount.id, "elo xd");
 				if (user.uid && currentAccount.id) {
 					fetchMyList(user.uid, currentAccount.id);
 				}
@@ -111,7 +116,11 @@ function App({
 				<Route path="/login" component={LoginPage} />
 				<Route path="/signin" component={SigninPage} />
 				<Route exact path="/" component={ChooseAccountPage} />
-				<Route component={Navbar} />
+				{matches.small ? (
+					<Route component={NavbarMobile} />
+				) : (
+					<Route component={Navbar} />
+				)}
 				{/* BROWSE */}
 				<Route path="/browse" component={MainPage} />
 				<Route
@@ -157,6 +166,8 @@ function App({
 						return <Modal {...props} onDismissURL="/mylist" />;
 					}}
 				/>
+				{/* MY PROFILE PAGE */}
+				<Route path="/myprofile" component={MyProfilePage} />
 				{/* MY ACCOUNT PAGE */}
 				<Route path="/myaccount" component={MyAccountPage} />
 				{/* WATCH VIDEO */}

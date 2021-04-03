@@ -12,7 +12,6 @@ import "./styles/DetailDescription.css";
 import colorOnRating from "../../utilities/colorOnRating";
 
 const path = "https://image.tmdb.org/t/p/w1280";
-// const overviewChars = 100;
 
 function DetailDescription({ detail, type, cast, id }) {
 	const renderMetadata = () => {

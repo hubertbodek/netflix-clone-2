@@ -5,6 +5,7 @@
 
 .SigninForm__information {
 	font-size: 1.5rem;
+	/* background-color: red; */
 }
 
 .login-link {
@@ -14,4 +15,19 @@
 
 .login-link:hover {
 	color: red;
+}
+
+@media (max-width: 768px) {
+	.MuiSvgIcon-root {
+		height: 2rem !important;
+		width: 2rem !important;
+	}
+
+	.LoginForm__terms-info {
+		font-size: 1.4rem;
+	}
+
+	.LoginForm__signin {
+		font-size: 1.4rem;
+	}
 }

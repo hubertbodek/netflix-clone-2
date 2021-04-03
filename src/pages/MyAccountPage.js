@@ -86,9 +86,9 @@ function MyAccountPage({ account, user, changeAvatarAndUsername }) {
 	const renderAvailableAvatars = () => {
 		return avatarPaths.map((path, index) => {
 			return (
-				<div key={path} className="MyAccountPage__avatar-container">
+				<div key={path} className="page-avatar-container">
 					<img
-						className="MyAccountPage__avatar"
+						className="page-avatar"
 						tabIndex={1}
 						onFocus={handleImgFocus}
 						onBlur={handleImgBlur}
@@ -102,12 +102,12 @@ function MyAccountPage({ account, user, changeAvatarAndUsername }) {
 
 	return (
 		<div className="MyAccountPage">
-			<div className="MyAccountPage__card">
-				<div className="MyAccountPage__credentials">
-					<div className="MyAccountPage__current-avatar-container">
+			<div className="page-card">
+				<div className="page-credentials">
+					<div className="page-current-avatar-container">
 						{account && (
 							<img
-								className="MyAccountPage__avatar"
+								className="page-avatar"
 								src={account?.avatar_url}
 								alt="avatar"
 							/>
@@ -115,6 +115,7 @@ function MyAccountPage({ account, user, changeAvatarAndUsername }) {
 					</div>
 
 					<Input
+						autoFocus
 						placeholder="Change username"
 						value={inputValue}
 						onChange={(e) => setInputValue(e.target.value)}
@@ -122,10 +123,8 @@ function MyAccountPage({ account, user, changeAvatarAndUsername }) {
 						className={classes.input}
 					/>
 				</div>
-				<div className="MyAccountPage__change-avatar">
-					<h4 className="MyPageAccount__change-header">
-						Change your current avatar
-					</h4>
+				<div className="page-grid">
+					<h4 className="page-change-header">Change your current avatar</h4>
 					{renderAvailableAvatars()}
 				</div>
 				<div className="btns-container">

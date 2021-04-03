@@ -121,7 +121,13 @@ function Profile({ currentUser, setCurrentProfile }) {
 									id="menu-list-grow"
 									onKeyDown={handleListKeyDown}
 								>
-									<MenuItem onClick={handleClose}>Profile</MenuItem>
+									{/* <MenuItem
+										onClick={(e) => {
+											//handleChangePage(e, "/myprofile");
+										}}
+									>
+										Profile
+									</MenuItem> */}
 									<MenuItem
 										onClick={(e) => {
 											handleChangePage(e, "/myaccount");
