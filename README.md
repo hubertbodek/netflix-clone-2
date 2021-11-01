@@ -19,5 +19,26 @@
 
 
 ## Screenshots
-![Example screenshot](./img/screenshot.png)
-<!-- If you have screenshots you'd like to share, include them here. -->
+<!-- ![Login page](./public/login.png) -->
+<p float="left" align="center">
+  <img src="./public/login.png" width="45%" />
+  <img src="./public/users.png" width="45%" /> 
+</p>
+<div align="center">Login view and users view.</div>
+
+![Hero](./public/hero.png)
+<div align="center">Main page view.</div>
+<br/>
+
+![Movies](./public/movies.png)
+<div align="center">Movies page view.</div>
+<br/>
+
+![Modal](./public/modal.png)
+<div align="center">Modal which contains details about specific movie or TV show.</div>
+<br/>
+
+![Settings](./public/settings.png)
+<div align="center">Account settings view</div>
+<br/>
+
