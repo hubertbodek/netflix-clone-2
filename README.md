@@ -1,7 +1,10 @@
 # Netflix-clone App
 > Project focused on building simplified version of Netflix web app.
 > Live demo [_here_](https://netflix-clone-2.herokuapp.com).\
-> (App is hosted on Heroku so it has cold start. If error occurs just refresh the page and the app will be running). <!-- If you have the project hosted somewhere, include the link here. -->
+> Log in to the app with this data:\n
+> login: example@example.com\
+> password: Example1234\
+> > (App is hosted on Heroku so it has cold start. If error occurs just refresh the page and the app will be running). <!-- If you have the project hosted somewhere, include the link here. -->
 
 ## Technologies Used
 - React 17.0.1
