@@ -1,6 +1,6 @@
 # Netflix-clone App
 > Project focused on building simplified version of Netflix web app.
-> Live demo [_here_](https://netflix-clone-2.herokuapp.com)
+> Live demo [_here_](https://netflix-clone-2.herokuapp.com).\n
 > (App is hosted on Heroku so it has cold start. If error occurs just refresh the page and the app will be running). <!-- If you have the project hosted somewhere, include the link here. -->
 
 ## Technologies Used
