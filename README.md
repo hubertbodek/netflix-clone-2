@@ -18,11 +18,11 @@
 ## Features
 - User authentication
 - Browsing latest movies and TV shows and adding them to 'Your List'
-- Account settings
+- Account settings.
 
 
 ## Screenshots
-<!-- ![Login page](./public/login.png) -->
+
 <p float="left" align="center">
   <img src="./public/login.png" width="45%" />
   <img src="./public/users.png" width="45%" /> 
